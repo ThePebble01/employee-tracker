@@ -17,4 +17,4 @@ Please note that you must run the sql scripts in schema.sql in order for the app
 5. Open the terminal and navigate to the main directory of the application.
 6. Run 'node index.js' in the terminal to initiate the prompts.
 
-This video walks through using the app:
+This video walks through using the app: https://drive.google.com/file/d/1M5bUhwrQ0ZaHJe1GggXgECyTgEqecrQ2/view
