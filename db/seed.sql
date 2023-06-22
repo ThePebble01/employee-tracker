@@ -2,8 +2,8 @@ INSERT into department(name)
 VALUES ("Sales"), ("Service");
 
 INSERT into role(title, salary, department_id)
-VALUES ("Sales Development Rep", 10, 1), ("Sales Rep", 20, 1), ("Sales Manager", 30, 1),
-("Support Agent", 10, 2), ("Senior Support Agent", 20, 2), ("Support Manager", 66, 2);
+VALUES ("Sales Development Rep", 30000, 1), ("Sales Rep", 40000, 1), ("Sales Manager", 60000, 1),
+("Support Agent", 20000, 2), ("Senior Support Agent", 40000, 2), ("Support Manager", 66000, 2);
 
 INSERT into employee(first_name, last_name, role_id, manager_id)
 VALUES ("Bolin", "Smol", 3, null), ("Aaron", "Rodgerz", 2, 1), ("Michelle", "Deux", 2, 1), ("Tyr", "Schorson", 1, 1),
