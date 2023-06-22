@@ -45,15 +45,19 @@ function handleInitialPrompts(response) {
   switch (response.firstPromptChoice) {
     case "View All Departments":
       viewAllFromTable(allDepartmentsQueryString);
+      promptInitialQuestions();
       break;
     case "View All Roles":
       viewAllFromTable(allRolesQueryString);
+      promptInitialQuestions();
       break;
     case "View All Employees":
       viewAllFromTable(allEmployeesQueryString);
+      promptInitialQuestions();
       break;
     case "Add a Department":
       promptAddDepartment();
+      promptInitialQuestions();
       break;
     case "Add a Role":
       break;
@@ -72,7 +76,6 @@ function viewAllFromTable(queryString) {
       console.error(err);
     } else {
       console.table(results);
-      promptInitialQuestions();
     }
   });
 }
@@ -83,10 +86,8 @@ function promptAddDepartment() {
         type: "input",
         message: "Enter a name for the department.",
         name: "departmentName",
-        validation: (response) => {
-          return response.departmentName
-            ? true
-            : "A department name is required!";
+        validate: (departmentName) => {
+          return departmentName ? true : "A department name is required!";
         },
       },
     ])
@@ -103,20 +104,24 @@ function insertDepartment(departmentName) {
       if (err) {
         console.log(err);
       }
-      promptInitialQuestions();
+      console.log(
+        `A record for ${departmentName} has been inserted into the department table.`
+      );
+      viewAllFromTable(allDepartmentsQueryString);
     }
   );
 }
 
 function promptAddRole() {
+  // prepare related data
   inquirer
     .prompt([
       {
         type: "input",
         message: "Enter a title for the role.",
         name: "title",
-        validation: (response) => {
-          return response.title ? true : "A title is required!";
+        validate: (response) => {
+          return response ? true : "A title is required!";
         },
       },
       {
@@ -125,8 +130,9 @@ function promptAddRole() {
         name: "salary",
       },
       {
-        type: "input",
+        type: "list",
         message: "Enter the id of the role's department. (optional)",
+        choices: ["QUERY DEPARTMENTS AND LOAD"],
         name: "departmentId",
       },
     ])
@@ -150,4 +156,3 @@ function insertRole() {
 }
 */
 //promptInitialQuestions();   MY INIT
-promptAddDepartment();
